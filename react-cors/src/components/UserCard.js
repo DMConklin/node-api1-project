@@ -33,7 +33,7 @@ const UserCard = props => {
 
     return(
         <div>
-            <form onSubmit={console.log(editing)}>
+            <form>
                 {editing ? 
                 <>
                 <label htmlFor="name">Name:</label><br />
