@@ -1,6 +1,8 @@
 const express = require('express')
+const cors = require('cors')
 const server = express()
 server.use(express.json())
+server.use(cors())
 const db = require('./database.js')
 
 server.post('/api/users', (req,res) => {
