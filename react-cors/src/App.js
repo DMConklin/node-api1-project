@@ -13,12 +13,8 @@ const App = () => {
   const [createdUser, setCreatedUser] = useState({initialUser})
   const [creating, setCreating] = useState(false);
 
-  const handleUpdate = data => {
+  const updateUsers = data => {
     setUsers(data);
-  }
-  
-  const updateUsers = () => {
-    api('/users', 'GET', handleUpdate);
   }
 
   const logCreatedUser = user => {
@@ -29,7 +25,10 @@ const App = () => {
     e.preventDefault();
     if (creating) { 
       api('/users', 'POST', logCreatedUser, createdUser);
-      updateUsers();
+      updateUsers([
+        ...users,
+        createdUser
+      ])
     }
     setCreating(!creating);
   }
@@ -44,7 +43,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <button onClick={updateUsers}>Get Users</button><button onClick={toggleCreating}>Create User</button>
+      <button onClick={() => api('/users', 'GET', updateUsers)}>Get Users</button><button onClick={toggleCreating}>Create User</button>
       {creating ?
         <form>
           <label htmlFor="name">Name:</label><br />

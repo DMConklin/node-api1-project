@@ -1,3 +1,5 @@
+let idCounter = 4;
+
 let users = [
 	{ id: "1", name: "Jane Doe", bio: "Something about me" },
 	{ id: "2", name: "John Doe", bio: "Something about me" },
@@ -14,7 +16,7 @@ function getUserById(id) {
 
 function createUser(data) {
 	const payload = {
-		id: String(users.length + 1),
+		id: String(idCounter + 1),
 		...data,
 	}
 
