@@ -16,7 +16,7 @@ function getUserById(id) {
 
 function createUser(data) {
 	const payload = {
-		id: String(idCounter + 1),
+		id: String(idCounter++),
 		...data,
 	}
 

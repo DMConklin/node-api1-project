@@ -6,13 +6,12 @@ server.use(cors())
 const db = require('./database.js')
 
 server.post('/api/users', (req,res) => {
-    if (!req.body.name || !req.body.bio) {
-        return res.status(400).json({
-            message: 'Please provide name and bio for the user'
-        })
-    }
-
     try {
+        if (!req.body.name || !req.body.bio) {
+            return res.status(400).json({
+                message: 'Please provide name and bio for the user'
+            })
+        }
         const newUser = db.createUser({
             name: req.body.name,
             bio: req.body.bio

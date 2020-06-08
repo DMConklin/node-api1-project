@@ -13,28 +13,26 @@ const App = () => {
   const [createdUser, setCreatedUser] = useState({initialUser})
   const [creating, setCreating] = useState(false);
 
-  useEffect(() => {
-    api('/users', 'GET', updateUsers)
-  }, [])
-
   const updateUsers = data => {
     setUsers(data);
   }
+
+  useEffect(() => {
+    api('/users', 'GET', updateUsers)
+  }, [users])
 
   const logCreatedUser = user => {
     console.log(user);
   }
 
-  const toggleCreating = e => {
+  const createUser = e => {
     e.preventDefault();
     if (creating) { 
       api('/users', 'POST', logCreatedUser, createdUser);
-      updateUsers([
-        ...users,
-        createdUser
-      ])
     }
     setCreating(!creating);
+    setCreatedUser(initialUser);
+    
   }
 
   const handleCreation = e => {
@@ -47,7 +45,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <button onClick={toggleCreating}>Create User</button>
+      <button onClick={createUser}>Create User</button>
       {creating ?
         <form>
           <label htmlFor="name">Name:</label><br />
