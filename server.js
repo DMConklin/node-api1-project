@@ -7,7 +7,7 @@ const db = require('./database.js')
 
 server.post('/api/users', (req,res) => {
     if (!req.body.name || !req.body.bio) {
-        return res.statusMessage(400).json({
+        return res.status(400).json({
             message: 'Please provide name and bio for the user'
         })
     }
@@ -82,7 +82,7 @@ server.put('/api/users/:id', (req,res) => {
             })
         }
         if (!req.body.name || !req.body.bio) {
-            return res.statusMessage(400).json({
+            return res.status(400).json({
                 message: 'Please provide name and bio for the user'
             })
         }

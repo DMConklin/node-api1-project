@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import { api } from './api';
 import UserCard from './components/UserCard';
@@ -12,6 +12,10 @@ const App = () => {
   const [users, setUsers] = useState([]);
   const [createdUser, setCreatedUser] = useState({initialUser})
   const [creating, setCreating] = useState(false);
+
+  useEffect(() => {
+    api('/users', 'GET', updateUsers)
+  }, [])
 
   const updateUsers = data => {
     setUsers(data);
@@ -43,7 +47,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <button onClick={() => api('/users', 'GET', updateUsers)}>Get Users</button><button onClick={toggleCreating}>Create User</button>
+      <button onClick={toggleCreating}>Create User</button>
       {creating ?
         <form>
           <label htmlFor="name">Name:</label><br />
