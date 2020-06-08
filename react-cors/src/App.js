@@ -49,7 +49,11 @@ const App = () => {
           <label htmlFor="name">Name:</label><br />
           <input type="text" name="name" id="name" value={createdUser.name} onChange={handleCreation} /><br />
           <label htmlFor="bio">Bio:</label><br />
-          <textarea name="bio" id="bio" value={createdUser.bio} onChange={handleCreation} />
+          <textarea name="bio" id="bio" value={createdUser.bio} onChange={handleCreation} /><br />
+          <button onClick={e => {
+            e.preventDefault();
+            setCreating(!creating)
+          }}>Cancel</button>
         </form>
         :
         null
