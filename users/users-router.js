@@ -38,10 +38,7 @@ router.post('/users', async (req,res) => {
             })
         }
 
-        const newUser = await Users.createUser({
-            name: req.body.name,
-            bio: req.body.bio
-        })
+        const newUser = await Users.createUser(req.body)
 
         res.status(201).json(newUser)
     } catch(err) {
